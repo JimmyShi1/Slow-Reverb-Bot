@@ -5,17 +5,10 @@ from pydub import AudioSegment
 from discord.ext import commands
 from audio import speed_change
 #from pysndfx import AudioEffectsChain
-
 bot = commands.Bot(command_prefix = '!yee ')
 
-@bot.command(name = 'url')
+@bot.command(name = 'reverb')
 async def yt(ctx, url):
-  song_there = os.path.isfile('./song.mp3')
-  try:
-    if song_there:
-      os.remove('./song.mp3')
-  except PermissionError:
-    await ctx.send("dude im going to cuhm on u")
   ydl_opts = {
     'format': 'bestaudio/best',
     'outtmpl': './song.mp3',
@@ -27,12 +20,18 @@ async def yt(ctx, url):
 }
   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
-  sound = AudioSegment.from_file("./song.mp3")
+    info_dict = ydl.extract_info(url, download=False)
+    video_title = info_dict.get('title', None)
+  newPath = "./" + video_title + ".mp3"
+  os.rename(r"./song.mp3",newPath)
+  sound = AudioSegment.from_file(newPath)
   newSound = speed_change(sound, 0.77)
-  file_handle = newSound.export("./song.mp3", format="mp3")
-  await ctx.send(file=discord.File('./song.mp3'))
+  file_handle = newSound.export(newPath, format="mp3")
+  await ctx.send(file=discord.File(newPath))
+  os.remove(newPath)
 
 @bot.command(name = 'ping')
+## Responds with any message to show the bot is online and working
 async def ping(ctx):
   await ctx.send("im gonna cuhm on u fr")
 @bot.event
@@ -40,4 +39,4 @@ async def ping(ctx):
 async def on_ready():
   print('Logged in as {0.user}'.format(bot))
 
-bot.run('ODI5MTAzMjc3MjQxMDA4MTc4.YGzQmQ.LutmoXZe5LGqB6STIk2xghwGarw')
+bot.run()
