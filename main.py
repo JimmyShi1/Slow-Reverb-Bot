@@ -4,7 +4,10 @@ import youtube_dl
 from pydub import AudioSegment
 from discord.ext import commands
 from audio import speed_change
+from dotenv import load_dotenv
 #from pysndfx import AudioEffectsChain
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix = '!yee ')
 
 @bot.command(name = 'reverb')
@@ -26,7 +29,7 @@ async def yt(ctx, url, *args):
     newPath = "./" + ("{}".format(" ".join(args))) + ".mp3"
   else:
     newPath = "./" + video_title + ".mp3"
-  os.rename(r"./song.mp3",newPath)
+  os.rename("./song.mp3",newPath)
   sound = AudioSegment.from_file(newPath)
   newSound = speed_change(sound, 0.77)
   file_handle = newSound.export(newPath, format="mp3")
@@ -42,4 +45,4 @@ async def ping(ctx):
 async def on_ready():
   print('Logged in as {0.user}'.format(bot))
 
-bot.run('')
+bot.run(TOKEN)
