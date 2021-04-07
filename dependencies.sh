@@ -41,6 +41,7 @@ then
 	pip3 install youtube-dl
 	pip3 install pydub
 	pip3 install python-dotenv
+	pip3 install -U discord.py\[voice\]
 fi
 
 echo "Complete."
