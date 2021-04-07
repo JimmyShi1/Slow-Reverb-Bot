@@ -1,5 +1,6 @@
 ### TODO
   # IMPORTANT: Add a graceful exiting of program to clean directory (Removing folders, files, etc.)
+  # Refractor code and clean up main
   # Make seperate directories for songs functions (chat and vc)
   # Queue system for songs
   # Search
