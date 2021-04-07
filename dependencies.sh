@@ -40,6 +40,7 @@ then
 	pip3 install discord
 	pip3 install youtube-dl
 	pip3 install pydub
+	pip3 install python-dotenv
 fi
 
 echo "Complete."
