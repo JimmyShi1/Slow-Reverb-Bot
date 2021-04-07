@@ -40,4 +40,4 @@ async def ping(ctx):
 async def on_ready():
   print('Logged in as {0.user}'.format(bot))
 
-bot.run(os.getenv('TOKEN'))
+bot.run('ODI5MTAzMjc3MjQxMDA4MTc4.YGzQmQ.LutmoXZe5LGqB6STIk2xghwGarw')
