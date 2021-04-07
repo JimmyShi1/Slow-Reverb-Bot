@@ -1,10 +1,10 @@
 import discord
 import os
 import youtube_dl
-#from pydub import AudioSegment
+from pydub import AudioSegment
 from discord.ext import commands
 #from audio import speed_change
-from pysndfx import AudioEffectsChain
+#from pysndfx import AudioEffectsChain
 
 bot = commands.Bot(command_prefix = '!yee ')
 
@@ -27,12 +27,9 @@ async def yt(ctx, url):
 }
   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
-  fx = (
-    AudioEffectsChain()
-    .reverb()
-    .speed(0.77)
-  )
-  fx('./song.mp3', './song.mp3')
+  sound = AudioSegment.from_mp3("./song.mp3")
+  newSound = sound.set_frame_rate(30000)
+  file_handle = newSound.export("./song.mp3", format="mp3")
   await ctx.send(file=discord.File('./song.mp3'))
 
 @bot.command(name = 'ping')
