@@ -32,7 +32,7 @@ else
 fi
 
 # install pip dependencies
-echo "Install pip dependencies? (yn)"
+echo "Install pip dependencies? (y/n)"
 read op
 if [ "$op" = "y" ] 
 then
