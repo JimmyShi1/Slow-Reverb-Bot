@@ -8,7 +8,7 @@ from audio import speed_change
 bot = commands.Bot(command_prefix = '!yee ')
 
 @bot.command(name = 'reverb')
-async def yt(ctx, url):
+async def yt(ctx, url, *args):
   ydl_opts = {
     'format': 'bestaudio/best',
     'outtmpl': './song.mp3',
@@ -22,7 +22,10 @@ async def yt(ctx, url):
     ydl.download([url])
     info_dict = ydl.extract_info(url, download=False)
     video_title = info_dict.get('title', None)
-  newPath = "./" + video_title + ".mp3"
+  if args:
+    newPath = "./" + ("{}".format(" ".join(args))) + ".mp3"
+  else:
+    newPath = "./" + video_title + ".mp3"
   os.rename(r"./song.mp3",newPath)
   sound = AudioSegment.from_file(newPath)
   newSound = speed_change(sound, 0.77)
@@ -39,4 +42,4 @@ async def ping(ctx):
 async def on_ready():
   print('Logged in as {0.user}'.format(bot))
 
-bot.run(os.getenv('TOKEN'))
+bot.run('')
