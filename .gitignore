@@ -2,3 +2,4 @@
 *.lock
 *.toml
 *.mp3
+.env
