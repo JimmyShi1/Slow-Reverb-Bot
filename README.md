@@ -5,3 +5,10 @@ A discord bot that allows for manipulation of songs to be slowed and reverbed.
 - Installation
 - Usage
 - License
+- TODO
+# TODO
+- Search Support
+- Generic MP3 Uploads
+- Output MP3 song name
+- Spotify support
+- VC support
