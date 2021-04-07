@@ -82,4 +82,4 @@ async def andrew(ctx):
 async def on_ready():
   print('Logged in as {0.user}'.format(bot))
 
-bot.run(TOKEN)
+bot.run('ODI5MTAzMjc3MjQxMDA4MTc4.YGzQmQ.7brXZhiWLf_KK2LHo_I58fQ7Og8')
