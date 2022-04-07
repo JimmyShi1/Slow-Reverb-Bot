@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 
 ### API Token
 load_dotenv()
-TOKEN = 'ODI5MTAzMjc3MjQxMDA4MTc4.YGzQmQ.tB5NIGw4C2JNNJIb-sgcyxN7wwE'
+TOKEN = ''
 bot = commands.Bot(command_prefix = '!yee ')
 
 ### Plays local song in Voice channel
