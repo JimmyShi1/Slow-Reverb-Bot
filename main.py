@@ -8,7 +8,8 @@
   ###
 import discord
 import os
-import youtube_dl
+#import youtube_dl
+import yt_dlp
 from pydub import AudioSegment
 from discord.ext import commands
 from audio import speed_change
@@ -17,17 +18,8 @@ from dotenv import load_dotenv
 
 ### API Token
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = 'ODI5MTAzMjc3MjQxMDA4MTc4.YGzQmQ.tB5NIGw4C2JNNJIb-sgcyxN7wwE'
 bot = commands.Bot(command_prefix = '!yee ')
-
-### Prepare local directories
-oDirectoryExists = os.path.isdir('./oSongs/') # normal output songs
-if not oDirectoryExists:
-  directory = "oSongs"
-  directoryPath = "/Users/admin/Slow-Reverb-Bot/" # localhost path MUST CHANGE
-  path = os.path.join(directoryPath, directory)
-  os.mkdir(path)
-  print("Directory '% s' created" % directory)
 
 ### Plays local song in Voice channel
 @bot.command(name = 'play')
@@ -51,7 +43,7 @@ async def play(ctx, url):
         'preferredquality': '192',
     }],
   }
-  with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+  with yt_dlp.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
     info_dict = ydl.extract_info(url, download=False)
     video_title = info_dict.get('title', None)
@@ -102,7 +94,7 @@ async def yt(ctx, url, *args):
         'preferredquality': '192',
     }],
 }
-  with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+  with yt_dlp.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
     info_dict = ydl.extract_info(url, download=False)
     video_title = info_dict.get('title', None)
